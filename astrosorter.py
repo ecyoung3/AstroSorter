@@ -70,10 +70,11 @@ class AstroSorter(QMainWindow, form_class):
             'Filename': str,
             'Image DateTime': str,
             'FrameType': str,
+            'ImageGroup': str,
             'EXIF ExposureTime': str,
             'EXIF ISOSpeedRatings': int,
-            'EXIF FocalLength': int,
             'EXIF FNumber': str,
+            'EXIF FocalLength': int,
             'Image ImageWidth': int,
             'Image ImageLength': int,
             'EXIF ColorSpace': str,
@@ -230,19 +231,22 @@ class AstroSorter(QMainWindow, form_class):
             mask = ((df['ExposureTime'] == group['ExposureTime']) &
                     (df['ISOSpeedRatings'] == group['ISOSpeedRatings']) &
                     (df['FNumber'] == group['FNumber']))
+            iso, fnum = group['ISOSpeedRatings'], group['FNumber']
+            group_name = f'{iso:.0f} ISO f{fnum:.1f}'
+            self.pics_df.loc[mask, 'ImageGroup'] = group_name
             if group['ExposureTimeFloat'] == min_exp:
                 conditions.loc[i, 'FrameType'] = 'Bias'
                 self.pics_df.loc[mask, 'FrameType'] = 'Bias'
             elif group['Count'] == 1:
-                conditions.loc[i, 'FrameType'] = 'Other'
-                self.pics_df.loc[mask, 'FrameType'] = 'Other'
+                conditions.loc[i, 'FrameType'] = 'Misc'
+                self.pics_df.loc[mask, 'FrameType'] = 'Misc'
             else:
                 conditions.loc[i, 'FrameType'] = 'Unsorted'
                 self.pics_df.loc[mask, 'FrameType'] = 'Unsorted'
                 
         # Sort out dark/light and flat frames
         settings = ['ISOSpeedRatings', 'FNumber']
-        isos = conditions[conditions['FrameType'] != 'Other']
+        isos = conditions[conditions['FrameType'] != 'Misc']
         isos = isos.groupby(settings).size().reset_index().rename(columns={0: 'Groups'})
         for i, group in isos.iterrows():
             mask = ((df['ISOSpeedRatings'] == group['ISOSpeedRatings']) &
@@ -250,7 +254,7 @@ class AstroSorter(QMainWindow, form_class):
                     (self.pics_df['FrameType'] == 'Unsorted'))
             if group['Groups'] == 3:
                 iso, fnum = group['ISOSpeedRatings'], group['FNumber']
-                group_name = f'{iso} ISO f{fnum}'
+                group_name = f'{iso:.0f} ISO f{fnum:.1f}'
                 self.pics_df.loc[mask, 'ImageGroup'] = group_name
                 times = sorted(df.loc[mask, 'ExposureTimeFloat'].tolist())
                 t_min, t_max = float(times[0]), float(times[-1])
@@ -259,7 +263,10 @@ class AstroSorter(QMainWindow, form_class):
                 self.pics_df.loc[flat_mask, 'FrameType'] = 'Flat'
                 self.pics_df.loc[other_mask, 'FrameType'] = 'Dark or Light'
             else:
-                self.pics_df.loc[mask, 'FrameType'] = 'Other'
+                self.pics_df.loc[mask, 'FrameType'] = 'Misc'
+                iso, fnum = group['ISOSpeedRatings'], group['FNumber']
+                group_name = f'{iso:.0f} ISO f{fnum:.1f}'
+                self.pics_df.loc[mask, 'ImageGroup'] = group_name
                 
         # Distinguish dark and light frames
         for i, info in self.pics_df.iterrows():
@@ -292,23 +299,31 @@ class AstroSorter(QMainWindow, form_class):
             folder = self.default_save_folder
             
         # Each group of ISO shots with at least 2 shutter speeds is a group
-        
-        for name in self.pics_df['FrameType'].unique():
-            subfolder = os.path.join(folder, name).replace('\\', '/')
-            if not os.path.exists(subfolder):
-                os.makedirs(subfolder)
-            mask = (self.pics_df['FrameType'] == name)
-            self.pics_df.loc[mask, 'DestinationFolder'] = subfolder
-            for filepath, info in self.pics_df[mask].iterrows():
-                filename = info['Filename']
-                dest_path = os.path.join(subfolder, filename).replace('\\', '/')
-                self.pics_df.loc[filepath, 'DestinationPath'] = dest_path
-                if copy:
-                    shutil.copy(filepath, dest_path)
+        for group in self.pics_df['ImageGroup'].unique():
+            frames = self.pics_df[self.pics_df['ImageGroup'] == group]
+            for frame in frames['FrameType'].unique():
+                # Create subfolders
+                mask = ((self.pics_df['FrameType'] == frame) & 
+                        (self.pics_df['ImageGroup'] == group))
+                if frame != 'Misc':
+                    subfolder = os.path.join(folder, group, frame).replace('\\', '/')
                 else:
-                    os.rename(filepath, dest_path)
-                num_left -= 1
-                self.notice(f'Moving pictures: {num_left}/{num_pics} remaining')
+                    subfolder = os.path.join(folder, frame).replace('\\', '/')
+                if not os.path.exists(subfolder):
+                    os.makedirs(subfolder)
+                self.pics_df.loc[mask, 'DestinationFolder'] = subfolder
+                
+                # Move files
+                for filepath, info in self.pics_df[mask].iterrows():
+                    filename = info['Filename']
+                    dest_path = os.path.join(subfolder, filename).replace('\\', '/')
+                    self.pics_df.loc[filepath, 'DestinationPath'] = dest_path
+                    if copy:
+                        shutil.copy(filepath, dest_path)
+                    else:
+                        os.rename(filepath, dest_path)
+                    num_left -= 1
+                    self.notice(f'Moving pictures: {num_left}/{num_pics} remaining')
                     
         self.notice(f'Moved {num_pics} pictures in {time.time()-t0:.2f} seconds')
     
