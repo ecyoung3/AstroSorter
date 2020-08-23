@@ -115,14 +115,20 @@ class AstroSorter(QMainWindow, form_class):
         self.analyzePicsButton.setEnabled(False)
         self.analyzePicsButton.setText('Analyzing Pictures...')
         
+        # Get list of picture filepaths
         pics = pics if pics else self.get_pics(location)
         if pics is None:
             return self.alert('Found no pictures to analyze...')
+        
         self.notice(f'Analyzing {len(pics)} pictures...')
+        
+        # Store metadata in a dataframe with the filepath as index
         pic_dict = {path: self.get_metadata(path) for path in pics}
         df = pd.DataFrame.from_dict(pic_dict, orient='index')
         df.rename(columns=lambda c: c.split(' ')[-1], inplace=True)
         df.index.rename('Filepath', inplace=True)
+        
+        # Make sure the columns are the proper datatypes
         for filepath, info in df.iterrows():
             df.loc[filepath, 'Filename'] = os.path.basename(filepath)
         for field, func in self.metadata_fields.items():
@@ -132,12 +138,16 @@ class AstroSorter(QMainWindow, form_class):
             except:
                 self.alert(f'Could not convert {field} using {func}')
         df['DateTime'] = df['DateTime'].apply(self.reformat_date)
+        df['FNumber'] = df['FNumber'].apply(self.convert_fraction)
+        
+        # Remove duplicate entries in case the same files are analyzed multiple times
         df = df if self.pics_df is None else pd.concat([self.pics_df, df])
         df = df[~df.index.duplicated(keep='first')]
+        
+        # Replace 'nan' with 'None' so it looks cleaner in the table view
         self.pics_df = df.replace({np.nan: None, 'nan': None})
         
         self.notice(f'Analyzed {len(df)} pictures in {time.time()-t0:.2f} seconds')
-        
         return df
     
     def get_metadata(self, filepath: str) -> dict:
@@ -230,24 +240,24 @@ class AstroSorter(QMainWindow, form_class):
                 conditions.loc[i, 'FrameType'] = 'Unsorted'
                 self.pics_df.loc[mask, 'FrameType'] = 'Unsorted'
                 
-        # Sort out dark or light and flat frames
+        # Sort out dark/light and flat frames
         settings = ['ISOSpeedRatings', 'FNumber']
         isos = conditions[conditions['FrameType'] != 'Other']
         isos = isos.groupby(settings).size().reset_index().rename(columns={0: 'Groups'})
-        group_num = 0
         for i, group in isos.iterrows():
             mask = ((df['ISOSpeedRatings'] == group['ISOSpeedRatings']) &
                     (df['FNumber'] == group['FNumber']) &
                     (self.pics_df['FrameType'] == 'Unsorted'))
             if group['Groups'] == 3:
-                self.pics_df.loc[mask, 'ImageGroup'] = group_num
+                iso, fnum = group['ISOSpeedRatings'], group['FNumber']
+                group_name = f'{iso} ISO f{fnum}'
+                self.pics_df.loc[mask, 'ImageGroup'] = group_name
                 times = sorted(df.loc[mask, 'ExposureTimeFloat'].tolist())
                 t_min, t_max = float(times[0]), float(times[-1])
                 flat_mask = mask & (self.pics_df['ExposureTime'].apply(eval) == t_min)
                 other_mask = mask & (self.pics_df['ExposureTime'].apply(eval) == t_max)
                 self.pics_df.loc[flat_mask, 'FrameType'] = 'Flat'
                 self.pics_df.loc[other_mask, 'FrameType'] = 'Dark or Light'
-                group_num += 1
             else:
                 self.pics_df.loc[mask, 'FrameType'] = 'Other'
                 
@@ -376,10 +386,16 @@ class AstroSorter(QMainWindow, form_class):
     def reset_info(self):
         columns = [name.split(' ')[-1] for name in self.metadata_fields.keys()]
         self.pics_df = pd.DataFrame(columns = columns)
-    
+        
     def reformat_date(self, date_string: str):
         time_obj = datetime.strptime(date_string, '%Y:%m:%d %H:%M:%S')
         return date.strftime(time_obj, '%m/%d/%Y %H:%M:%S')
+    
+    def convert_fraction(self, fraction: str) -> float:
+        try:
+            return eval(fraction)
+        except:
+            return fraction
     
     def condense_pixels(self, frame: np.ndarray) -> np.ndarray:
         if frame.ndim == 3:

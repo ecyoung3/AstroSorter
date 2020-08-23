@@ -17,7 +17,9 @@ class PandasModel(QAbstractTableModel):
         if not index.isValid():
             return
         if role == Qt.DisplayRole:
-            return str(self._data.iloc[index.row(), index.column()])
+            val = self._data.iloc[index.row(), index.column()]
+            val = f'{val:.1f}' if type(val) is float else val
+            return str(val)
         if role == Qt.EditRole:
             try:
                 return eval(self._data.iloc[index.row(), index.column()])
