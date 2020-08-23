@@ -20,6 +20,8 @@ Usage:
 2. Click "Analyze Pictures" to get a picture list with associated metadata for each file.
 3. Click "Sort Pictures" to automatically determine the frame type for each file and move them into corresponding folders in the destination folder.
     
+![Screenshot of program](/demo.png)
+    
 DISCLAIMER: I am not responsible for any lost photos or corrupted files (shouldn't happen, but you never know). Please test it with copies of your photos first.
 
 Planned features: 
