@@ -59,6 +59,8 @@ class AstroSorter(QMainWindow, form_class):
         # Folder variables
         self.default_save_folder = os.path.abspath('test/')
         self.test_location = os.path.abspath('test/')
+        
+        # These local paths obviously will not work on your computer
         self.astro_folder = 'D:/ElliotYoung/Pictures/Astro/'
         self.test_pic = 'C:/Users/ElliotYoung/Google Drive/Code/Github/AstroSorter/test/Light/light (2).CR2'
         
@@ -449,6 +451,5 @@ class AstroSorter(QMainWindow, form_class):
 # =============================================================================
 if __name__ == '__main__':
     sorter = AstroSorter(None)
-    # sorter.test()
     app.exec_()
         
