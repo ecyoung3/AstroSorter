@@ -1,0 +1,26 @@
+<RCC>
+  <qresource prefix="icons">
+    <file>../icons/change user icon.png</file>
+    <file>../icons/checkbox.png</file>
+    <file>../icons/close tab hover icon.png</file>
+    <file>../icons/close tab icon.png</file>
+    <file>../icons/down button gray.png</file>
+    <file>../icons/down button hover.png</file>
+    <file>../icons/down button.png</file>
+    <file>../icons/edit sample icon.png</file>
+    <file>../icons/hidden icon.png</file>
+    <file>../icons/left button gray.png</file>
+    <file>../icons/left button hover.png</file>
+    <file>../icons/left button.png</file>
+    <file>../icons/open folder icon.png</file>
+    <file>../icons/picture icon.png</file>
+    <file>../icons/right button gray.png</file>
+    <file>../icons/right button hover.png</file>
+    <file>../icons/right button.png</file>
+    <file>../icons/stop recording icon.png</file>
+    <file>../icons/up button gray.png</file>
+    <file>../icons/up button hover.png</file>
+    <file>../icons/up button.png</file>
+    <file>../icons/visible icon.png</file>
+  </qresource>
+</RCC>

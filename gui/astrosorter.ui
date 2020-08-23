@@ -1,0 +1,1416 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>mainWindow</class>
+ <widget class="QMainWindow" name="mainWindow">
+  <property name="enabled">
+   <bool>true</bool>
+  </property>
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1156</width>
+    <height>892</height>
+   </rect>
+  </property>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>800</width>
+    <height>600</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>16777215</width>
+    <height>16777215</height>
+   </size>
+  </property>
+  <property name="palette">
+   <palette>
+    <active>
+     <colorrole role="WindowText">
+      <brush brushstyle="SolidPattern">
+       <color alpha="255">
+        <red>255</red>
+        <green>255</green>
+        <blue>255</blue>
+       </color>
+      </brush>
+     </colorrole>
+     <colorrole role="Button">
+      <brush brushstyle="SolidPattern">
+       <color alpha="255">
+        <red>25</red>
+        <green>35</green>
+        <blue>45</blue>
+       </color>
+      </brush>
+     </colorrole>
+     <colorrole role="Text">
+      <brush brushstyle="SolidPattern">
+       <color alpha="255">
+        <red>255</red>
+        <green>255</green>
+        <blue>255</blue>
+       </color>
+      </brush>
+     </colorrole>
+     <colorrole role="ButtonText">
+      <brush brushstyle="SolidPattern">
+       <color alpha="255">
+        <red>255</red>
+        <green>255</green>
+        <blue>255</blue>
+       </color>
+      </brush>
+     </colorrole>
+     <colorrole role="Base">
+      <brush brushstyle="SolidPattern">
+       <color alpha="255">
+        <red>25</red>
+        <green>35</green>
+        <blue>45</blue>
+       </color>
+      </brush>
+     </colorrole>
+     <colorrole role="Window">
+      <brush brushstyle="SolidPattern">
+       <color alpha="255">
+        <red>25</red>
+        <green>35</green>
+        <blue>45</blue>
+       </color>
+      </brush>
+     </colorrole>
+    </active>
+    <inactive>
+     <colorrole role="WindowText">
+      <brush brushstyle="SolidPattern">
+       <color alpha="255">
+        <red>255</red>
+        <green>255</green>
+        <blue>255</blue>
+       </color>
+      </brush>
+     </colorrole>
+     <colorrole role="Button">
+      <brush brushstyle="SolidPattern">
+       <color alpha="255">
+        <red>25</red>
+        <green>35</green>
+        <blue>45</blue>
+       </color>
+      </brush>
+     </colorrole>
+     <colorrole role="Text">
+      <brush brushstyle="SolidPattern">
+       <color alpha="255">
+        <red>255</red>
+        <green>255</green>
+        <blue>255</blue>
+       </color>
+      </brush>
+     </colorrole>
+     <colorrole role="ButtonText">
+      <brush brushstyle="SolidPattern">
+       <color alpha="255">
+        <red>255</red>
+        <green>255</green>
+        <blue>255</blue>
+       </color>
+      </brush>
+     </colorrole>
+     <colorrole role="Base">
+      <brush brushstyle="SolidPattern">
+       <color alpha="255">
+        <red>25</red>
+        <green>35</green>
+        <blue>45</blue>
+       </color>
+      </brush>
+     </colorrole>
+     <colorrole role="Window">
+      <brush brushstyle="SolidPattern">
+       <color alpha="255">
+        <red>25</red>
+        <green>35</green>
+        <blue>45</blue>
+       </color>
+      </brush>
+     </colorrole>
+    </inactive>
+    <disabled>
+     <colorrole role="WindowText">
+      <brush brushstyle="SolidPattern">
+       <color alpha="255">
+        <red>255</red>
+        <green>255</green>
+        <blue>255</blue>
+       </color>
+      </brush>
+     </colorrole>
+     <colorrole role="Button">
+      <brush brushstyle="SolidPattern">
+       <color alpha="255">
+        <red>25</red>
+        <green>35</green>
+        <blue>45</blue>
+       </color>
+      </brush>
+     </colorrole>
+     <colorrole role="Text">
+      <brush brushstyle="SolidPattern">
+       <color alpha="255">
+        <red>255</red>
+        <green>255</green>
+        <blue>255</blue>
+       </color>
+      </brush>
+     </colorrole>
+     <colorrole role="ButtonText">
+      <brush brushstyle="SolidPattern">
+       <color alpha="255">
+        <red>255</red>
+        <green>255</green>
+        <blue>255</blue>
+       </color>
+      </brush>
+     </colorrole>
+     <colorrole role="Base">
+      <brush brushstyle="SolidPattern">
+       <color alpha="255">
+        <red>25</red>
+        <green>35</green>
+        <blue>45</blue>
+       </color>
+      </brush>
+     </colorrole>
+     <colorrole role="Window">
+      <brush brushstyle="SolidPattern">
+       <color alpha="255">
+        <red>25</red>
+        <green>35</green>
+        <blue>45</blue>
+       </color>
+      </brush>
+     </colorrole>
+    </disabled>
+   </palette>
+  </property>
+  <property name="font">
+   <font>
+    <family>Bahnschrift SemiLight</family>
+    <pointsize>11</pointsize>
+    <weight>50</weight>
+    <italic>false</italic>
+    <bold>false</bold>
+   </font>
+  </property>
+  <property name="mouseTracking">
+   <bool>true</bool>
+  </property>
+  <property name="focusPolicy">
+   <enum>Qt::StrongFocus</enum>
+  </property>
+  <property name="windowTitle">
+   <string>AstroSorter</string>
+  </property>
+  <property name="autoFillBackground">
+   <bool>false</bool>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">/*																All Items																				*/	
+* {
+	font: 11pt &quot;Bahnschrift SemiLight&quot;;
+	color: white;
+	background-color: rgb(25, 35, 45);
+}
+/*																QPushbutton																		*/	
+#mainLayout &gt; QPushButton {
+	font: 11pt &quot;Bahnschrift SemiBold&quot;;
+	background: none;
+	border: 2px solid rgba(80, 95, 105, 150);
+ 	border-radius: 2px;
+	border: none;
+	padding: 5px;
+	border-radius: 3px;
+}
+#mainLayout &gt; #rectButton:hover:!disabled {
+	padding-bottom: 7px;
+	border: 1px solid rgb(0, 167, 209);
+}
+#directoryButton, #userButton, #sampleButton {
+	background: none;
+	border: none;
+}
+#directoryButton:hover:!disabled, #userButton:hover:!disabled, #sampleButton:hover:!disabled {
+	border: 1px solid rgb(0, 167, 209);
+	padding-bottom: 7px;
+} 
+QPushButton {
+	font: 11pt &quot;Bahnschrift SemiBold&quot;;
+	background-color: qlineargradient(x1: 0.5, y1: 1.0, 
+		x2: 0.5, y2: 0.0,
+		stop: 1.0 rgb(68, 86, 100), 
+		stop: 0.0 rgb(44, 55, 64));
+	border: 1px solid rgba(80, 95, 105, 255);
+	padding: 5px;
+	border-radius: 3px;
+}
+QPushButton:hover:!disabled {
+	background: qlineargradient(x1: 0.5, y1: 1.0, 
+		x2: 0.5, y2: 0.0,
+		stop: 1.0 rgb(68, 86, 100), 
+		stop: 0.0 rgb(44, 55, 64));
+	padding-bottom: 7px;
+	border: 1px solid rgb(0, 167, 209);
+}
+#mainLayout &gt; QPushButton:hover:!disabled {
+	border: 1px solid rgb(0, 167, 209);
+	padding: 5px 5px 7px 5px;
+}
+QPushButton::disabled {
+	color: rgb(68, 86, 100);
+	background-color: qlineargradient(x1: 0.5, y1: 1.0, 
+		x2: 0.5, y2: 0.0,
+		stop: 1.0 rgb(34, 43, 53), 
+		stop: 0.0 rgb(44, 55, 64));
+}
+#startstopwatchButton {
+	color: rgb(155, 229, 100);
+}
+#resetstopwatchButton::enabled {
+	color: rgb(228, 88, 101);
+}
+#starttimerButton::enabled {
+	color: rgb(155, 229, 100);
+}
+#starttimerButton::disabled:checked {
+	color: rgb(228, 88, 101);
+}
+#resettimerButton::enabled {
+	color: rgb(228, 88, 101);
+}
+/*																QLabel																					*/	
+#drawCanvas {
+	background-color: none;
+	border: none;
+}
+#gammaValue_Label, #blacklevelValue_Label, #gainValue_Label {
+	color: rgb(155, 229, 100);
+}
+#mainLayout &gt; #zoomvalueLabel {
+	padding-left: 0px;
+	color: rgb(155, 229, 100);
+}
+#mainLayout &gt; #zoomtextLabel {
+	padding-right: 0px;
+}
+#mainLayout &gt; QLabel {
+	padding-left: 8px;
+	padding-right: 8px;
+}
+#sampleLabel, #userLabel {
+	margin-right: 0px;
+	margin-left: -6px;
+	padding-right: 0px;
+	padding-left: 0px;
+}
+QLabel:disabled {
+	color: rgb(68, 86, 100);
+}
+/*																QFrame																				*/	
+QFrame[frameShape=&quot;4&quot;] { /* horizontal line */
+	color: rgb(62, 152, 193);
+}
+QFrame[frameShape=&quot;5&quot;] { /* vertical line */
+	color: rgb(62, 152, 193);
+}
+/*																QTabBar																				*/	
+QTabBar::tab {
+	font: 11pt &quot;Bahnschrift SemiBold&quot;;
+	color: white;
+	border: 1px solid rgb(68, 86, 100);
+	border-bottom-width: 0px;
+	border-top-left-radius: 4px;
+	border-top-right-radius: 4px;
+	padding: 2px 10px 5px 10px;
+	margin-right: 3px;
+	background: qlineargradient(spread:pad, 
+		x1:1, y1:1, 
+		x2:1, y2:0.585227, 
+		stop:0 rgba(44, 55, 64, 255), 
+		stop:1 rgba(80, 95, 105, 255));
+}
+QTabBar::tab:hover {
+	border: 1px solid rgb(0, 167, 209);
+	background: qlineargradient(x1: 0.5, y1: 0.86,
+		x2: 0.5, y2: 1.0,
+ 		stop: 0.0 rgb(50, 65, 75),
+		stop: 1.0  rgb(0, 167, 209));
+	background: qlineargradient(spread:pad, x1:1, y1:0.977273, x2:1, y2:0, stop:0 rgba(0, 167, 209, 156), stop:0.198864 rgba(80, 95, 105, 255));
+	padding: 2px 10px 6px 10px;
+}
+QTabBar::tab:selected {
+	border: none;
+	background: rgb(68, 86, 100);
+	border-bottom: 1px solid rgb(0, 167, 209);
+	border-top: 1px solid rgb(68, 86, 100);
+	padding: 2px 11px 5px 11px;
+	background: qlineargradient(spread:pad, x1:1, y1:1, x2:1, y2:0.83, stop:0 rgba(0, 167, 209, 255), stop:1 rgba(80, 95, 105, 255));
+}
+QTabBar::tab:selected:hover {
+	border: 1px solid rgb(0, 167, 209);
+	background: qlineargradient(spread:pad, x1:1, y1:1, x2:1, y2:0.779, stop:0 rgba(0, 167, 209, 255), stop:1 rgba(80, 95, 105, 255));
+	padding: 2px 10px 7px 10px;
+}
+QTabBar::scroller {
+	width: 16px;
+}
+QTabBar QToolButton {
+	background-color: rgba(25, 35, 45, 220);
+	border: none;
+	border-radius: 3px;
+}
+QTabBar QToolButton::left-arrow {
+	image: url(:/icons/icons/left button.png);
+}
+QTabBar QToolButton::left-arrow:disabled {
+	image: url(:/icons/icons/left button hover.png);
+}
+QTabBar QToolButton::left-arrow:disabled {
+	image: url(:/icons/icons/left button gray.png)
+}
+QTabBar QToolButton::right-arrow {
+	image: url(:/icons/icons/right button.png);
+}
+QTabBar QToolButton::right-arrow:hover {
+	image: url(:/icons/icons/right button hover.png);
+}
+QTabBar QToolButton::right-arrow:disabled {
+	image: url(:/icons/icons/right button gray.png)
+}
+QTabBar::close-button {
+	image: url(:/icons/icons/close tab icon.png);
+	subcontrol-position: right;
+}
+QTabBar::close-button:hover {
+	image: url(:/icons/icons/close tab hover icon.png);
+}
+/*																QTabWidget																		*/	
+QTabWidget::pane {
+	border: 1px solid rgb(80, 95, 105);
+	border-radius: 3px;
+	border-top-left-radius: 0px;
+}
+QTabWidget::pane:hover {
+	border: 1px solid rgb(0, 167, 209);
+}
+/*																QStatusBar																			*/	
+QStatusBar::item {
+	border: 0px solid black;
+}
+/*																QScrollBar																			*/
+QScrollBar {
+	background: transparent;
+	border: 1px solid rgba(111, 124, 132, 150);
+	border-radius: 5px;
+	width: 16px;
+	height: 16px;
+	margin: 3px;
+}
+QScrollBar:vertical {
+	margin-top: 13px;
+	margin-bottom: 13px;
+}
+QScrollBar:horizontal {
+	margin-left: 13px;
+	margin-right: 13px;
+}
+QScrollBar::sub-line:vertical {
+	subcontrol-origin: border;
+	subcontrol-position: top;
+	background: none;
+	border-radius: 3px;
+	height: 13px;
+	top: -13px;
+}
+QScrollBar::add-line:vertical {
+	subcontrol-origin: border;
+	subcontrol-position: bottom;
+	background: none;
+	border-radius: 3px;
+	height: 13px;
+	bottom: -13px;
+}
+QScrollBar::sub-line:horizontal {
+	subcontrol-origin: border;
+	subcontrol-position: left;
+	background: none;
+	border-radius: 3px;
+	width: 13px;
+	left: -13px;
+}
+QScrollBar::add-line:horizontal {
+	subcontrol-origin: border;
+	subcontrol-position: right;
+	background: none;
+	border-radius: 3px;
+	width: 13px;
+	right: -13px;
+}
+QScrollBar::up-arrow:vertical {
+	subcontrol-origin: border;
+	subcontrol-position: top;
+	image: url(:/icons/icons/up button gray.png);
+	width: 12px;
+}
+QScrollBar::up-arrow:vertical:hover {
+	image: url(:/icons/icons/up button hover.png);
+}
+QScrollBar::down-arrow:vertical {
+	subcontrol-origin: border;
+	subcontrol-position: bottom;
+	image: url(:/icons/icons/down button gray.png);
+	width: 12px;
+}
+QScrollBar::down-arrow:vertical:hover {
+	image: url(:/icons/icons/down button hover.png);
+}
+QScrollBar::left-arrow:horizontal {
+	subcontrol-origin: border;
+	subcontrol-position: left;
+	image: url(:/icons/icons/left button gray.png);
+	height: 12px;
+}
+QScrollBar::left-arrow:horizontal:hover {
+	image: url(:/icons/icons/left button hover.png);
+}
+QScrollBar::right-arrow:horizontal {
+	subcontrol-origin: border;
+	subcontrol-position: right;
+	image: url(:/icons/icons/right button gray.png);
+	height: 12px;
+}
+QScrollBar::right-arrow:horizontal:hover {
+	image: url(:/icons/icons/right button hover.png);
+}
+QScrollBar::handle {
+	background-color: rgba(80, 95, 105, 150);
+	border: 1px solid rgb(111, 124, 132);
+	border-radius: 3px;
+}
+QScrollBar::handle:hover {
+	border: 1px solid rgb(0, 167, 209);
+	background-color: rgb(0, 167, 209);
+}
+QScrollBar::add-page, QScrollBar::sub-page {
+	background: none;
+}
+/*																QSlider																					*/	
+QSlider::groove {
+	height: 6px;
+	border: 0px solid rgb(25, 35, 45);
+	background: rgb(175, 182, 186);
+	border-radius: 2px;
+}
+QSlider::handle {
+	width: 12px;
+	border-radius: 4px;
+	background-color: rgb(155, 229, 100);
+	margin-top: -6px;
+	margin-bottom: -6px;
+}
+QSlider::handle:hover {
+	background: rgb(0, 167, 209);
+}
+QSlider::handle:disabled {
+	background: rgb(175, 182, 186);
+	border: 1px solid rgb(111, 124, 132);
+}
+/*																QCheckBox																			*/
+QCheckBox::indicator {
+	width: 12px;
+	height: 12px;
+	border: 1px solid white;
+	border-radius: 2px;
+}
+QCheckBox::indicator:unchecked {
+	background: rgb(228, 88, 101);
+}
+QCheckBox::indicator:checked {
+	background: rgb(155, 229, 100);
+}
+QCheckBox::disabled {
+	color: rgb(68, 86, 100);
+}
+QCheckBox::indicator:disabled {
+	background: rgb(68, 86, 100);
+	border: 1px solid rgb(144, 149, 153);
+}
+/*																QMenuBar																			*/	
+QMenuBar::item {
+	background: transparent;
+}
+QMenuBar::item:selected {
+	background-color: rgb(80, 95, 105);
+	border-bottom-left-radius: 3px;
+	border-bottom-right-radius: 3px;
+}
+/*																QTextEdit																			*/	
+QTextEdit {
+	background: rgb(44, 55, 64);
+	border: 1px solid rgb(62, 152, 193);
+	border-radius: 3px;
+	padding: 5px;
+}
+/*																QLineEdit																				*/	
+QLineEdit {
+	color: rgb(155, 229, 100);
+	background: qlineargradient(x1: 0.5, y1: 1.0, 
+		x2: 0.5, y2: 0.0,
+		stop: 1.0 rgba(68, 86, 100, 235), 
+		stop: 0.0 rgb(44, 55, 64));
+	padding: 4px 6px 4px 6px;
+	border: 1px solid rgb(0, 167, 209);
+	border-radius: 3px;
+}
+QLineEdit:hover {
+	background: qlineargradient(x1: 0.5, y1: 1.0, 
+		x2: 0.5, y2: 0.0,
+		stop: 1.0 rgb(68, 86, 100), 
+		stop: 0.2 rgb(44, 55, 64));
+}
+/*																QSpinBox																				*/
+QSpinBox {
+	background: qlineargradient(x1: 0.5, y1: 1.0, 
+		x2: 0.5, y2: 0.0,
+		stop: 1.0 rgba(68, 86, 100, 235), 
+		stop: 0.0 rgb(44, 55, 64));
+	color: rgb(155, 229, 100);
+	border: 1px solid rgb(0, 167, 209);
+	border-radius: 3px;
+	padding: 4px 6px 4px 6px;
+}
+QSpinBox::hover {
+	background: qlineargradient(x1: 0.5, y1: 1.0, 
+		x2: 0.5, y2: 0.0,
+		stop: 1.0 rgb(68, 86, 100), 
+		stop: 0.2 rgb(44, 55, 64));
+}
+QSpinBox::up-button {
+	subcontrol-origin: border;
+	subcontrol-position: top right;
+	top: 4px;
+	right: 3px;
+	width: 16px;
+	height: 10px;
+	border-image: url(:/icons/icons/up button.png);
+	border-width: 1px;
+}
+QSpinBox::down-button {
+	subcontrol-origin: border;
+	subcontrol-position: bottom right;
+	bottom: 4px;
+	right: 3px;
+	width: 16px;
+	height: 10px;
+	border-image: url(:/icons/icons/down button.png);
+	border-width: 1px;
+}
+QSpinBox::down-button:hover {
+	border-image: url(:/icons/icons/down button hover.png)
+}
+QSpinBox::up-button:hover {
+	border-image: url(:/icons/icons/up button hover.png)
+}
+QSpinBox::up-button:pressed {
+	background: rgb(44, 55, 64);
+	border-radius: 3px;
+}
+QSpinBox::down-button:pressed {
+	background: rgb(44, 55, 64);
+	border-radius: 3px;
+}
+/*																QDoubleSpinBox																	*/
+QDoubleSpinBox {
+	background: qlineargradient(x1: 0.5, y1: 1.0, 
+		x2: 0.5, y2: 0.0,
+		stop: 1.0 rgba(68, 86, 100, 235), 
+		stop: 0.0 rgb(44, 55, 64));
+	color: rgb(155, 229, 100);
+	border: 1px solid rgb(0, 167, 209);
+	border-radius: 3px;
+	padding: 4px 6px 4px 6px;
+}
+QDoubleSpinBox::hover {
+	background: qlineargradient(x1: 0.5, y1: 1.0, 
+		x2: 0.5, y2: 0.0,
+		stop: 1.0 rgb(68, 86, 100), 
+		stop: 0.2 rgb(44, 55, 64));
+}
+QDoubleSpinBox::up-button {
+	subcontrol-origin: border;
+	subcontrol-position: top right;
+	top: 4px;
+	right: 3px;
+	width: 16px;
+	height: 10px;
+	border-image: url(:/icons/icons/up button.png);
+	border-width: 1px;
+}
+QDoubleSpinBox::down-button {
+	subcontrol-origin: border;
+	subcontrol-position: bottom right;
+	bottom: 4px;
+	right: 3px;
+	width: 16px;
+	height: 10px;
+	border-image: url(:/icons/icons/down button.png);
+	border-width: 1px;
+}
+QDoubleSpinBox::down-button:hover {
+	border-image: url(:/icons/icons/down button hover.png)
+}
+QDoubleSpinBox::up-button:hover {
+	border-image: url(:/icons/icons/up button hover.png)
+}
+QDoubleSpinBox::up-button:pressed {
+	background: rgb(44, 55, 64);
+	border-radius: 3px;
+}
+QDoubleSpinBox::down-button:pressed {
+	background: rgb(44, 55, 64);
+	border-radius: 3px;
+}
+QDoubleSpinBox::disabled {
+	color: rgb(68, 86, 100);
+}
+QDoubleSpinBox::up-button:disabled {
+	border-image: url(:/icons/icons/up button gray.png);
+}
+QDoubleSpinBox::down-button:disabled {
+	border-image: url(:/icons/icons/down button gray.png);
+}
+/*																QMenuBar																			*/
+QMenuBar {
+	background: rgb(68, 86, 100);
+	border-radius: 0px;
+}
+QMenuBar::item {
+	background: transparent;
+	border-bottom-left-radius: 0px;
+	border-bottom-right-radius: 0px;
+	padding: 12px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+QMenuBar::item:selected {
+ 	background: rgb(0, 167, 209);
+	border-bottom-left-radius: 0px;
+	border-bottom-right-radius: 0px;
+}
+/*																QMenu																					*/
+QMenuBar &gt; QMenu {
+	background: rgb(68, 86, 100);
+}
+QMenuBar &gt; QMenu::item {
+	border: 1px solid transparent;
+	margin-top: 0px;
+	margin-bottom: 0px;
+	padding-left: 8px;
+	padding-right: 8px;
+	padding-top: 4px;
+	padding-bottom: 4px;
+}
+QMenuBar &gt; QMenu::item:selected {
+ 	background: rgb(0, 167, 209);
+}
+QMenuBar &gt; QMenu::separator {
+	background: rgb(0, 167, 209);
+	height: 1px;
+}
+/*																QLCDNumber, QGroupbox													*/	
+QLCDNumber, QGroupBox {
+	border: 1px solid rgb(80, 95, 105);
+	border-radius: 3px;
+}
+QGroupBox {
+	margin-top: 10px;
+	padding-top: 10px;
+	border: none;
+}
+QGroupBox::title {
+	subcontrol-origin: margin;
+	subcontrol-position: top center;
+	margin: 0px;
+	padding: 15px;
+	top: -15px;
+}
+#timerScreen:disabled {
+	color: rgb(228, 88, 101);
+}
+/*																QToolTip																				*/	
+QToolTip {
+	background: rgb(111, 124, 132);
+	text: white;
+	border: 1px solid rgb(80, 95, 105);
+	border-radius: 3px;
+	padding: 5px;
+	opacity: 200;
+}
+/*																PlotItems																				*/	
+plotItem {
+	color: red;
+}
+/*															   QStatusBar 																			*/
+QStatusBar {
+	border-top: 1px solid rgb(80, 95, 105);
+}
+/*																QSizeGrip																				*/	
+QSizeGrip {
+	image: url(:/icons/icons/sizegrip.png);
+	width: 10px;
+	height: 10px;
+}
+/*																QTableView																			*/
+QHeaderView::section {
+	background:  rgba(80, 95, 105, 150);
+	border: none;
+}
+QHeaderView::down-arrow {
+	subcontrol-origin: padding;
+	subcontrol-position: center top;
+	image: url(:/icons/icons/down button hover.png);
+	height: 16px;
+	width: 16px;
+	top: -4px;
+}
+QHeaderView::up-arrow {
+	subcontrol-origin: padding;
+	subcontrol-position: center top;
+	image: url(:/icons/icons/up button hover.png);
+	height: 16px;
+	width: 16px;
+	top: -4px;
+}
+QTableView {
+	border-radius: 3px;
+	border: 1px solid rgb(0, 167, 209);
+	gridline-color: rgb(111, 124, 132);
+	selection-background-color: rgb(0, 167, 209);
+}
+/*																QGroupBox																			*/
+QGroupBox {
+	border-radius: 3px;
+	border: 1px solid rgb(0, 167, 209);
+	font-size: 18px;
+}
+QGroupBox::title {
+	subcontrol-origin: margin;
+	subcontrol-position: left top;
+	left: 3px;
+}</string>
+  </property>
+  <property name="iconSize">
+   <size>
+    <width>24</width>
+    <height>24</height>
+   </size>
+  </property>
+  <property name="tabShape">
+   <enum>QTabWidget::Triangular</enum>
+  </property>
+  <property name="dockOptions">
+   <set>QMainWindow::AllowNestedDocks|QMainWindow::AllowTabbedDocks|QMainWindow::AnimatedDocks</set>
+  </property>
+  <property name="unifiedTitleAndToolBarOnMac">
+   <bool>false</bool>
+  </property>
+  <widget class="QWidget" name="mainLayout">
+   <property name="minimumSize">
+    <size>
+     <width>0</width>
+     <height>0</height>
+    </size>
+   </property>
+   <property name="font">
+    <font>
+     <family>Bahnschrift SemiLight</family>
+     <pointsize>11</pointsize>
+     <weight>50</weight>
+     <italic>false</italic>
+     <bold>false</bold>
+    </font>
+   </property>
+   <property name="mouseTracking">
+    <bool>true</bool>
+   </property>
+   <layout class="QGridLayout" name="gridLayout" columnstretch="0,0">
+    <property name="leftMargin">
+     <number>2</number>
+    </property>
+    <property name="topMargin">
+     <number>2</number>
+    </property>
+    <property name="rightMargin">
+     <number>2</number>
+    </property>
+    <property name="bottomMargin">
+     <number>0</number>
+    </property>
+    <property name="spacing">
+     <number>0</number>
+    </property>
+    <item row="1" column="0" colspan="2">
+     <widget class="QWidget" name="fileDisplayWidget" native="true">
+      <layout class="QGridLayout" name="gridLayout_3">
+       <property name="leftMargin">
+        <number>4</number>
+       </property>
+       <property name="topMargin">
+        <number>4</number>
+       </property>
+       <property name="rightMargin">
+        <number>4</number>
+       </property>
+       <property name="bottomMargin">
+        <number>4</number>
+       </property>
+       <property name="spacing">
+        <number>4</number>
+       </property>
+      </layout>
+     </widget>
+    </item>
+    <item row="0" column="0" colspan="2">
+     <widget class="QWidget" name="loadWidget" native="true">
+      <layout class="QGridLayout" name="gridLayout_2">
+       <property name="leftMargin">
+        <number>4</number>
+       </property>
+       <property name="topMargin">
+        <number>4</number>
+       </property>
+       <property name="rightMargin">
+        <number>4</number>
+       </property>
+       <property name="bottomMargin">
+        <number>0</number>
+       </property>
+       <property name="spacing">
+        <number>4</number>
+       </property>
+       <item row="0" column="0" colspan="2">
+        <widget class="QGroupBox" name="selectFoldersGroupBox">
+         <property name="font">
+          <font>
+           <family>Bahnschrift SemiLight</family>
+           <pointsize>-1</pointsize>
+           <weight>50</weight>
+           <italic>false</italic>
+           <bold>false</bold>
+          </font>
+         </property>
+         <property name="title">
+          <string>Select Folders</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+         <layout class="QGridLayout" name="gridLayout_4">
+          <property name="leftMargin">
+           <number>6</number>
+          </property>
+          <property name="topMargin">
+           <number>6</number>
+          </property>
+          <property name="rightMargin">
+           <number>6</number>
+          </property>
+          <property name="bottomMargin">
+           <number>6</number>
+          </property>
+          <property name="spacing">
+           <number>6</number>
+          </property>
+          <item row="1" column="2">
+           <widget class="QLineEdit" name="outputFolderEdit">
+            <property name="frame">
+             <bool>true</bool>
+            </property>
+            <property name="readOnly">
+             <bool>false</bool>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="0">
+           <widget class="QPushButton" name="selectOutputFolderButton">
+            <property name="text">
+             <string>Select Output Folder</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="1">
+           <widget class="QCheckBox" name="useInputFolderCheckbox">
+            <property name="enabled">
+             <bool>true</bool>
+            </property>
+            <property name="text">
+             <string>Use input folder</string>
+            </property>
+            <property name="checked">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="2">
+           <widget class="QLineEdit" name="inputFolderEdit">
+            <property name="frame">
+             <bool>true</bool>
+            </property>
+            <property name="readOnly">
+             <bool>false</bool>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="0" colspan="2">
+           <widget class="QPushButton" name="selectInputFolderButton">
+            <property name="text">
+             <string>Select Input Folder</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item row="1" column="0" colspan="2">
+        <widget class="QGroupBox" name="processPicsGroupBox">
+         <property name="title">
+          <string>Process Pictures</string>
+         </property>
+         <layout class="QGridLayout" name="gridLayout_5">
+          <property name="leftMargin">
+           <number>6</number>
+          </property>
+          <property name="topMargin">
+           <number>6</number>
+          </property>
+          <property name="rightMargin">
+           <number>6</number>
+          </property>
+          <property name="bottomMargin">
+           <number>6</number>
+          </property>
+          <item row="0" column="0">
+           <widget class="QPushButton" name="analyzePicsButton">
+            <property name="text">
+             <string>Analyze Pictures</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="QPushButton" name="sortPicsButton">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
+            <property name="text">
+             <string>Sort Pictures</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="2">
+           <widget class="QPushButton" name="movePicsButton">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
+            <property name="text">
+             <string>Move Pictures</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="0" colspan="3">
+           <widget class="QTableView" name="fileTable">
+            <property name="styleSheet">
+             <string notr="true">border: none;</string>
+            </property>
+            <property name="frameShape">
+             <enum>QFrame::NoFrame</enum>
+            </property>
+            <property name="showDropIndicator" stdset="0">
+             <bool>false</bool>
+            </property>
+            <property name="alternatingRowColors">
+             <bool>false</bool>
+            </property>
+            <property name="selectionMode">
+             <enum>QAbstractItemView::ExtendedSelection</enum>
+            </property>
+            <property name="selectionBehavior">
+             <enum>QAbstractItemView::SelectRows</enum>
+            </property>
+            <property name="sortingEnabled">
+             <bool>true</bool>
+            </property>
+            <property name="cornerButtonEnabled">
+             <bool>false</bool>
+            </property>
+            <attribute name="horizontalHeaderHighlightSections">
+             <bool>false</bool>
+            </attribute>
+            <attribute name="horizontalHeaderStretchLastSection">
+             <bool>true</bool>
+            </attribute>
+            <attribute name="verticalHeaderVisible">
+             <bool>false</bool>
+            </attribute>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>1156</width>
+     <height>29</height>
+    </rect>
+   </property>
+   <property name="maximumSize">
+    <size>
+     <width>16777215</width>
+     <height>1111111</height>
+    </size>
+   </property>
+   <property name="palette">
+    <palette>
+     <active>
+      <colorrole role="WindowText">
+       <brush brushstyle="SolidPattern">
+        <color alpha="255">
+         <red>255</red>
+         <green>255</green>
+         <blue>255</blue>
+        </color>
+       </brush>
+      </colorrole>
+      <colorrole role="Button">
+       <brush brushstyle="SolidPattern">
+        <color alpha="255">
+         <red>68</red>
+         <green>86</green>
+         <blue>100</blue>
+        </color>
+       </brush>
+      </colorrole>
+      <colorrole role="Text">
+       <brush brushstyle="SolidPattern">
+        <color alpha="255">
+         <red>255</red>
+         <green>255</green>
+         <blue>255</blue>
+        </color>
+       </brush>
+      </colorrole>
+      <colorrole role="ButtonText">
+       <brush brushstyle="SolidPattern">
+        <color alpha="255">
+         <red>255</red>
+         <green>255</green>
+         <blue>255</blue>
+        </color>
+       </brush>
+      </colorrole>
+      <colorrole role="Base">
+       <brush brushstyle="SolidPattern">
+        <color alpha="255">
+         <red>68</red>
+         <green>86</green>
+         <blue>100</blue>
+        </color>
+       </brush>
+      </colorrole>
+      <colorrole role="Window">
+       <brush brushstyle="SolidPattern">
+        <color alpha="255">
+         <red>68</red>
+         <green>86</green>
+         <blue>100</blue>
+        </color>
+       </brush>
+      </colorrole>
+     </active>
+     <inactive>
+      <colorrole role="WindowText">
+       <brush brushstyle="SolidPattern">
+        <color alpha="255">
+         <red>255</red>
+         <green>255</green>
+         <blue>255</blue>
+        </color>
+       </brush>
+      </colorrole>
+      <colorrole role="Button">
+       <brush brushstyle="SolidPattern">
+        <color alpha="255">
+         <red>68</red>
+         <green>86</green>
+         <blue>100</blue>
+        </color>
+       </brush>
+      </colorrole>
+      <colorrole role="Text">
+       <brush brushstyle="SolidPattern">
+        <color alpha="255">
+         <red>255</red>
+         <green>255</green>
+         <blue>255</blue>
+        </color>
+       </brush>
+      </colorrole>
+      <colorrole role="ButtonText">
+       <brush brushstyle="SolidPattern">
+        <color alpha="255">
+         <red>255</red>
+         <green>255</green>
+         <blue>255</blue>
+        </color>
+       </brush>
+      </colorrole>
+      <colorrole role="Base">
+       <brush brushstyle="SolidPattern">
+        <color alpha="255">
+         <red>68</red>
+         <green>86</green>
+         <blue>100</blue>
+        </color>
+       </brush>
+      </colorrole>
+      <colorrole role="Window">
+       <brush brushstyle="SolidPattern">
+        <color alpha="255">
+         <red>68</red>
+         <green>86</green>
+         <blue>100</blue>
+        </color>
+       </brush>
+      </colorrole>
+     </inactive>
+     <disabled>
+      <colorrole role="WindowText">
+       <brush brushstyle="SolidPattern">
+        <color alpha="255">
+         <red>255</red>
+         <green>255</green>
+         <blue>255</blue>
+        </color>
+       </brush>
+      </colorrole>
+      <colorrole role="Button">
+       <brush brushstyle="SolidPattern">
+        <color alpha="255">
+         <red>68</red>
+         <green>86</green>
+         <blue>100</blue>
+        </color>
+       </brush>
+      </colorrole>
+      <colorrole role="Text">
+       <brush brushstyle="SolidPattern">
+        <color alpha="255">
+         <red>255</red>
+         <green>255</green>
+         <blue>255</blue>
+        </color>
+       </brush>
+      </colorrole>
+      <colorrole role="ButtonText">
+       <brush brushstyle="SolidPattern">
+        <color alpha="255">
+         <red>255</red>
+         <green>255</green>
+         <blue>255</blue>
+        </color>
+       </brush>
+      </colorrole>
+      <colorrole role="Base">
+       <brush brushstyle="SolidPattern">
+        <color alpha="255">
+         <red>68</red>
+         <green>86</green>
+         <blue>100</blue>
+        </color>
+       </brush>
+      </colorrole>
+      <colorrole role="Window">
+       <brush brushstyle="SolidPattern">
+        <color alpha="255">
+         <red>68</red>
+         <green>86</green>
+         <blue>100</blue>
+        </color>
+       </brush>
+      </colorrole>
+     </disabled>
+    </palette>
+   </property>
+   <property name="font">
+    <font>
+     <family>Bahnschrift SemiLight</family>
+     <pointsize>11</pointsize>
+     <weight>50</weight>
+     <italic>false</italic>
+     <bold>false</bold>
+    </font>
+   </property>
+   <widget class="QMenu" name="menuFile">
+    <property name="title">
+     <string>&amp;File</string>
+    </property>
+    <addaction name="menuExit"/>
+    <addaction name="separator"/>
+   </widget>
+   <addaction name="menuFile"/>
+  </widget>
+  <action name="menuExit">
+   <property name="text">
+    <string>&amp;Exit</string>
+   </property>
+   <property name="font">
+    <font>
+     <family>Bahnschrift SemiLight</family>
+     <pointsize>11</pointsize>
+     <weight>50</weight>
+     <bold>false</bold>
+    </font>
+   </property>
+  </action>
+  <action name="action_Capture">
+   <property name="text">
+    <string>&amp;Capture</string>
+   </property>
+  </action>
+  <action name="menuColormap">
+   <property name="text">
+    <string>&amp;Zoom</string>
+   </property>
+  </action>
+  <action name="menuOpen">
+   <property name="text">
+    <string>Open</string>
+   </property>
+  </action>
+  <action name="action_Record">
+   <property name="text">
+    <string>&amp;Record</string>
+   </property>
+  </action>
+  <action name="action_FFT">
+   <property name="text">
+    <string>&amp;FFT</string>
+   </property>
+  </action>
+  <action name="action_Replot">
+   <property name="text">
+    <string>&amp;Replot</string>
+   </property>
+  </action>
+  <action name="action_Add_rectangle">
+   <property name="text">
+    <string>&amp;Add rectangle</string>
+   </property>
+  </action>
+  <action name="action_Colormap_2">
+   <property name="text">
+    <string>&amp;Colormap</string>
+   </property>
+  </action>
+  <action name="menuExposure">
+   <property name="text">
+    <string>&amp;Colormap</string>
+   </property>
+  </action>
+  <action name="menuSave">
+   <property name="text">
+    <string>&amp;Save</string>
+   </property>
+  </action>
+  <action name="action_50_shades_of_gray">
+   <property name="text">
+    <string>&amp;50 shades of gray</string>
+   </property>
+  </action>
+  <action name="action_Connect">
+   <property name="text">
+    <string>&amp;Connect</string>
+   </property>
+  </action>
+  <action name="menuConnect">
+   <property name="text">
+    <string>&amp;Connect</string>
+   </property>
+  </action>
+  <action name="menuDefault">
+   <property name="text">
+    <string>&amp;Default</string>
+   </property>
+  </action>
+  <action name="connectButton">
+   <property name="text">
+    <string>&amp;Connect</string>
+   </property>
+   <property name="font">
+    <font>
+     <family>Bahnschrift SemiLight</family>
+     <pointsize>11</pointsize>
+    </font>
+   </property>
+  </action>
+  <action name="changesourceButton">
+   <property name="text">
+    <string>&amp;Change Source</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Shift+S</string>
+   </property>
+  </action>
+  <action name="menuChangeDirectory">
+   <property name="text">
+    <string>Change Base Directory</string>
+   </property>
+  </action>
+  <action name="actionSimulate_RHEED">
+   <property name="text">
+    <string>Simulate RHEED</string>
+   </property>
+  </action>
+ </widget>
+ <tabstops>
+  <tabstop>selectInputFolderButton</tabstop>
+  <tabstop>inputFolderEdit</tabstop>
+  <tabstop>selectOutputFolderButton</tabstop>
+  <tabstop>useInputFolderCheckbox</tabstop>
+  <tabstop>outputFolderEdit</tabstop>
+  <tabstop>analyzePicsButton</tabstop>
+  <tabstop>sortPicsButton</tabstop>
+  <tabstop>fileTable</tabstop>
+ </tabstops>
+ <resources>
+  <include location="../resources/resources.qrc"/>
+ </resources>
+ <connections/>
+</ui>
