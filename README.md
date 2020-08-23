@@ -16,9 +16,9 @@ Dependencies:
 
 Usage:  
 
-    Select input and output folders using the corresponding buttons (or use the input folder as the output folder by checking the checkbox).
-    Click "Analyze Pictures" to get a picture list with associated metadata for each file.
-    Click "Sort Pictures" to automatically determine the frame type for each file and move them into corresponding folders in the destination folder.
+1. Select input and output folders using the corresponding buttons (or use the input folder as the output folder by checking the checkbox).
+2. Click "Analyze Pictures" to get a picture list with associated metadata for each file.
+3. Click "Sort Pictures" to automatically determine the frame type for each file and move them into corresponding folders in the destination folder.
     
 DISCLAIMER: I am not responsible for any lost photos or corrupted files (shouldn't happen, but you never know). Please test it with copies of your photos first.
 
