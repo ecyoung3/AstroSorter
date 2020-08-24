@@ -62,10 +62,6 @@ class AstroSorter(QMainWindow, form_class):
         self.inputFolderEdit.setText(self.default_input)
         self.outputFolderEdit.setText(self.default_output)
         
-        # These local paths obviously will not work on your computer
-        self.astro_folder = 'D:/ElliotYoung/Pictures/Astro/'
-        self.test_pic = 'C:/Users/ElliotYoung/Google Drive/Code/Github/AstroSorter/test/Light/light (2).CR2'
-        
         # Photo variables
         self.pic_exts = ('cr2', 'png', 'jpg', 'jpeg', 'tiff', 'bmp', 'fits')
         self.metadata_fields = {
@@ -343,6 +339,9 @@ class AstroSorter(QMainWindow, form_class):
         except Exception as ex:
             self.alert('Unable to load configuration file')
             print(ex)
+            self.default_input = os.path.abspath('/pictures/')
+            self.default_output = os.path.abspath('/pictures/')
+            self.test_picture = os.path.abspath('/test/light.CR2')
             
     def save_config(self) -> None:
         try:
