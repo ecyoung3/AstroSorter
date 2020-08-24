@@ -1,5 +1,5 @@
 # AstroSorter
-A qt-based application to assist with sorting astrophotography images based on frame type (bias, dark, light, and flat).
+A PyQt5-based application to assist with sorting astrophotography images based on frame type (bias, dark, light, and flat).
 
 *Currently only tested on Windows 10 with Canon .CR2 raw files.*
 
