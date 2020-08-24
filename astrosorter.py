@@ -7,6 +7,7 @@
 import os
 import sys
 import ctypes
+import configparser
 
 if getattr(sys, 'frozen', False):
     local_path = os.path.dirname(sys.executable)
@@ -38,7 +39,7 @@ from modules import build, threading, models
 pyqt5ac.main(config='resources/resources config.yml')
 app_id = 'AstroSorter.AstroSorter.AstroSorter.AstroSorter'
 ctypes.windll.shell32.SetCurrentProcessExplicitAppUserModelID(app_id)
-form_class = uic.loadUiType('gui/astrosorter.ui')[0]; print('\n')
+form_class = uic.loadUiType('gui/astrosorter.ui')[0]
 app = QApplication(sys.argv)
 
 # =============================================================================
@@ -56,9 +57,10 @@ class AstroSorter(QMainWindow, form_class):
         # Set up threading
         self.threadpool = QThreadPool()
         
-        # Folder variables
-        self.default_save_folder = os.path.abspath('test/')
-        self.test_location = os.path.abspath('test/')
+        # Load configuration
+        self.load_config()
+        self.inputFolderEdit.setText(self.default_input)
+        self.outputFolderEdit.setText(self.default_output)
         
         # These local paths obviously will not work on your computer
         self.astro_folder = 'D:/ElliotYoung/Pictures/Astro/'
@@ -296,7 +298,7 @@ class AstroSorter(QMainWindow, form_class):
         
         folder = self.outputFolderEdit.text()
         if not folder or not os.path.exists(folder):
-            folder = self.default_save_folder
+            folder = self.default_output
             
         # Each group of ISO shots with at least 2 shutter speeds is a group
         for group in self.pics_df['ImageGroup'].unique():
@@ -330,8 +332,29 @@ class AstroSorter(QMainWindow, form_class):
     # =============================================================================
     # SAVING AND LOADING DATA
     # =============================================================================
+    def load_config(self) -> None:
+        self.config = configparser.ConfigParser()
+        try:
+            self.config.read('config.ini')
+            self.default_input = self.config['Default']['input_folder']
+            self.default_output = self.config['Default']['output_folder']
+            self.test_picture = self.config['Default']['test_picture']
+            self.notice('Loaded configuration file')
+        except Exception as ex:
+            self.alert('Unable to load configuration file')
+            print(ex)
+            
+    def save_config(self) -> None:
+        try:
+            with open('config.ini', 'w') as cfg:
+                cfg.write(self.config)
+            self.notice('Saved configuration file')
+        except Exception as ex:
+            self.alert('Unable to save configuration file')
+            print(ex)
+    
     def save_data(self, data) -> None:
-        save_path = os.path.join(self.test_location, 'photo info.pkl')
+        save_path = os.path.join(self.default_output, 'photo info.pkl')
         with open(save_path, 'wb') as f:
             pickle.dump(data, f)
         self.notice(f'Saved data to {save_path}')
@@ -380,6 +403,33 @@ class AstroSorter(QMainWindow, form_class):
     def sync_output_folder(self, checked: bool):
         if checked:
             self.outputFolderEdit.setText(self.inputFolderEdit.text())
+            
+    def toggle_folder_buttons(self):
+        # Leverage the fact that non-empty strings evaluate to True
+        self.openInputFolderButton.setEnabled(bool(self.inputFolderEdit.text()))
+        self.openOutputFolderButton.setEnabled(bool(self.outputFolderEdit.text()))
+            
+    def open_input_folder(self) -> None:
+        folder = self.inputFolderEdit.text()
+        if not os.path.exists(folder):
+            return self.alert(f'Folder does not exist')
+        if not os.path.isdir(folder):
+            return self.alert(f'{folder} is not a directory')
+        try:
+            os.startfile(folder)
+        except Exception as ex:
+            return self.alert(f'Could not open folder: {ex}')
+        
+    def open_output_folder(self) -> None:
+        folder = self.inputFolderEdit.text()
+        if not os.path.exists(folder):
+            return self.alert(f'{folder} does not exist')
+        if not os.path.isdir(folder):
+            return self.alert(f'{folder} is not a directory')
+        try:
+            os.startfile(folder)
+        except Exception as ex:
+            return self.alert(f'Could not open folder: {ex}')
         
     def notice(self, text: str) -> None:
         print(text)
@@ -451,7 +501,7 @@ class AstroSorter(QMainWindow, form_class):
     # =============================================================================
     def analyze_pics_thread(self):
         location = self.inputFolderEdit.text()
-        location = location if location else self.test_location
+        location = location if location else self.default_input
         worker = threading.Worker(self.analyze_pics, location=location)
         worker.signals.finished.connect(self.analyze_pics_finished)
         self.threadpool.start(worker)
@@ -473,7 +523,7 @@ class AstroSorter(QMainWindow, form_class):
     # =============================================================================
     def test(self):
         self.load_thumbnail(self.test_pic)
-        # pics = self.get_pics(self.test_location)
+        # pics = self.get_pics(self.default_input)
         # df = self.analyze_pics(pics)
         # self.sort_pics_thread(autodetect = True)
         

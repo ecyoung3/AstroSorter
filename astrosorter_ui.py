@@ -93,27 +93,6 @@ class Ui_mainWindow(object):
 "    background-color: rgb(25, 35, 45);\n"
 "}\n"
 "/*                                                                QPushbutton                                                                        */    \n"
-"#mainLayout > QPushButton {\n"
-"    font: 11pt \"Bahnschrift SemiBold\";\n"
-"    background: none;\n"
-"    border: 2px solid rgba(80, 95, 105, 150);\n"
-"     border-radius: 2px;\n"
-"    border: none;\n"
-"    padding: 5px;\n"
-"    border-radius: 3px;\n"
-"}\n"
-"#mainLayout > #rectButton:hover:!disabled {\n"
-"    padding-bottom: 7px;\n"
-"    border: 1px solid rgb(0, 167, 209);\n"
-"}\n"
-"#directoryButton, #userButton, #sampleButton {\n"
-"    background: none;\n"
-"    border: none;\n"
-"}\n"
-"#directoryButton:hover:!disabled, #userButton:hover:!disabled, #sampleButton:hover:!disabled {\n"
-"    border: 1px solid rgb(0, 167, 209);\n"
-"    padding-bottom: 7px;\n"
-"} \n"
 "QPushButton {\n"
 "    font: 11pt \"Bahnschrift SemiBold\";\n"
 "    background-color: qlineargradient(x1: 0.5, y1: 1.0, \n"
@@ -132,10 +111,6 @@ class Ui_mainWindow(object):
 "    padding-bottom: 7px;\n"
 "    border: 1px solid rgb(0, 167, 209);\n"
 "}\n"
-"#mainLayout > QPushButton:hover:!disabled {\n"
-"    border: 1px solid rgb(0, 167, 209);\n"
-"    padding: 5px 5px 7px 5px;\n"
-"}\n"
 "QPushButton::disabled {\n"
 "    color: rgb(68, 86, 100);\n"
 "    background-color: qlineargradient(x1: 0.5, y1: 1.0, \n"
@@ -143,46 +118,7 @@ class Ui_mainWindow(object):
 "        stop: 1.0 rgb(34, 43, 53), \n"
 "        stop: 0.0 rgb(44, 55, 64));\n"
 "}\n"
-"#startstopwatchButton {\n"
-"    color: rgb(155, 229, 100);\n"
-"}\n"
-"#resetstopwatchButton::enabled {\n"
-"    color: rgb(228, 88, 101);\n"
-"}\n"
-"#starttimerButton::enabled {\n"
-"    color: rgb(155, 229, 100);\n"
-"}\n"
-"#starttimerButton::disabled:checked {\n"
-"    color: rgb(228, 88, 101);\n"
-"}\n"
-"#resettimerButton::enabled {\n"
-"    color: rgb(228, 88, 101);\n"
-"}\n"
 "/*                                                                QLabel                                                                                    */    \n"
-"#drawCanvas {\n"
-"    background-color: none;\n"
-"    border: none;\n"
-"}\n"
-"#gammaValue_Label, #blacklevelValue_Label, #gainValue_Label {\n"
-"    color: rgb(155, 229, 100);\n"
-"}\n"
-"#mainLayout > #zoomvalueLabel {\n"
-"    padding-left: 0px;\n"
-"    color: rgb(155, 229, 100);\n"
-"}\n"
-"#mainLayout > #zoomtextLabel {\n"
-"    padding-right: 0px;\n"
-"}\n"
-"#mainLayout > QLabel {\n"
-"    padding-left: 8px;\n"
-"    padding-right: 8px;\n"
-"}\n"
-"#sampleLabel, #userLabel {\n"
-"    margin-right: 0px;\n"
-"    margin-left: -6px;\n"
-"    padding-right: 0px;\n"
-"    padding-left: 0px;\n"
-"}\n"
 "QLabel:disabled {\n"
 "    color: rgb(68, 86, 100);\n"
 "}\n"
@@ -438,8 +374,9 @@ class Ui_mainWindow(object):
 "        x2: 0.5, y2: 0.0,\n"
 "        stop: 1.0 rgba(68, 86, 100, 235), \n"
 "        stop: 0.0 rgb(44, 55, 64));\n"
-"    padding: 4px 6px 4px 6px;\n"
-"    border: 1px solid rgb(0, 167, 209);\n"
+"    padding: 4px 4px 4px 4px;\n"
+"    border-radius: 3px;\n"
+"    border: 1px solid rgba(80, 95, 105, 255);\n"
 "    border-radius: 3px;\n"
 "}\n"
 "QLineEdit:hover {\n"
@@ -725,6 +662,7 @@ class Ui_mainWindow(object):
         self.gridLayout_4.setSpacing(6)
         self.gridLayout_4.setObjectName("gridLayout_4")
         self.outputFolderEdit = QtWidgets.QLineEdit(self.selectFoldersGroupBox)
+        self.outputFolderEdit.setStyleSheet("")
         self.outputFolderEdit.setFrame(True)
         self.outputFolderEdit.setReadOnly(False)
         self.outputFolderEdit.setObjectName("outputFolderEdit")
@@ -734,10 +672,11 @@ class Ui_mainWindow(object):
         self.gridLayout_4.addWidget(self.selectOutputFolderButton, 1, 0, 1, 1)
         self.useInputFolderCheckbox = QtWidgets.QCheckBox(self.selectFoldersGroupBox)
         self.useInputFolderCheckbox.setEnabled(True)
-        self.useInputFolderCheckbox.setChecked(True)
+        self.useInputFolderCheckbox.setChecked(False)
         self.useInputFolderCheckbox.setObjectName("useInputFolderCheckbox")
         self.gridLayout_4.addWidget(self.useInputFolderCheckbox, 1, 1, 1, 1)
         self.inputFolderEdit = QtWidgets.QLineEdit(self.selectFoldersGroupBox)
+        self.inputFolderEdit.setStyleSheet("")
         self.inputFolderEdit.setFrame(True)
         self.inputFolderEdit.setReadOnly(False)
         self.inputFolderEdit.setObjectName("inputFolderEdit")
@@ -745,23 +684,28 @@ class Ui_mainWindow(object):
         self.selectInputFolderButton = QtWidgets.QPushButton(self.selectFoldersGroupBox)
         self.selectInputFolderButton.setObjectName("selectInputFolderButton")
         self.gridLayout_4.addWidget(self.selectInputFolderButton, 0, 0, 1, 2)
+        self.openInputFolderButton = QtWidgets.QPushButton(self.selectFoldersGroupBox)
+        self.openInputFolderButton.setEnabled(False)
+        self.openInputFolderButton.setStyleSheet("padding: 6px;")
+        self.openInputFolderButton.setText("")
+        icon = QtGui.QIcon()
+        icon.addPixmap(QtGui.QPixmap(":/icons/icons/open folder icon.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.openInputFolderButton.setIcon(icon)
+        self.openInputFolderButton.setObjectName("openInputFolderButton")
+        self.gridLayout_4.addWidget(self.openInputFolderButton, 0, 3, 1, 1)
+        self.openOutputFolderButton = QtWidgets.QPushButton(self.selectFoldersGroupBox)
+        self.openOutputFolderButton.setEnabled(False)
+        self.openOutputFolderButton.setStyleSheet("padding: 6px;")
+        self.openOutputFolderButton.setText("")
+        self.openOutputFolderButton.setIcon(icon)
+        self.openOutputFolderButton.setObjectName("openOutputFolderButton")
+        self.gridLayout_4.addWidget(self.openOutputFolderButton, 1, 3, 1, 1)
         self.gridLayout_2.addWidget(self.selectFoldersGroupBox, 0, 0, 1, 2)
         self.processPicsGroupBox = QtWidgets.QGroupBox(self.loadWidget)
         self.processPicsGroupBox.setObjectName("processPicsGroupBox")
         self.gridLayout_5 = QtWidgets.QGridLayout(self.processPicsGroupBox)
         self.gridLayout_5.setContentsMargins(6, 6, 6, 6)
         self.gridLayout_5.setObjectName("gridLayout_5")
-        self.analyzePicsButton = QtWidgets.QPushButton(self.processPicsGroupBox)
-        self.analyzePicsButton.setObjectName("analyzePicsButton")
-        self.gridLayout_5.addWidget(self.analyzePicsButton, 0, 0, 1, 1)
-        self.sortPicsButton = QtWidgets.QPushButton(self.processPicsGroupBox)
-        self.sortPicsButton.setEnabled(False)
-        self.sortPicsButton.setObjectName("sortPicsButton")
-        self.gridLayout_5.addWidget(self.sortPicsButton, 0, 1, 1, 1)
-        self.movePicsButton = QtWidgets.QPushButton(self.processPicsGroupBox)
-        self.movePicsButton.setEnabled(False)
-        self.movePicsButton.setObjectName("movePicsButton")
-        self.gridLayout_5.addWidget(self.movePicsButton, 0, 2, 1, 1)
         self.fileTable = QtWidgets.QTableView(self.processPicsGroupBox)
         self.fileTable.setStyleSheet("border: none;")
         self.fileTable.setFrameShape(QtWidgets.QFrame.NoFrame)
@@ -776,6 +720,17 @@ class Ui_mainWindow(object):
         self.fileTable.horizontalHeader().setStretchLastSection(True)
         self.fileTable.verticalHeader().setVisible(False)
         self.gridLayout_5.addWidget(self.fileTable, 1, 0, 1, 3)
+        self.analyzePicsButton = QtWidgets.QPushButton(self.processPicsGroupBox)
+        self.analyzePicsButton.setObjectName("analyzePicsButton")
+        self.gridLayout_5.addWidget(self.analyzePicsButton, 0, 0, 1, 1)
+        self.movePicsButton = QtWidgets.QPushButton(self.processPicsGroupBox)
+        self.movePicsButton.setEnabled(False)
+        self.movePicsButton.setObjectName("movePicsButton")
+        self.gridLayout_5.addWidget(self.movePicsButton, 0, 2, 1, 1)
+        self.sortPicsButton = QtWidgets.QPushButton(self.processPicsGroupBox)
+        self.sortPicsButton.setEnabled(False)
+        self.sortPicsButton.setObjectName("sortPicsButton")
+        self.gridLayout_5.addWidget(self.sortPicsButton, 0, 1, 1, 1)
         self.gridLayout_2.addWidget(self.processPicsGroupBox, 1, 0, 1, 2)
         self.gridLayout.addWidget(self.loadWidget, 0, 0, 1, 2)
         mainWindow.setCentralWidget(self.mainLayout)
@@ -923,8 +878,8 @@ class Ui_mainWindow(object):
         self.selectInputFolderButton.setText(_translate("mainWindow", "Select Input Folder"))
         self.processPicsGroupBox.setTitle(_translate("mainWindow", "Process Pictures"))
         self.analyzePicsButton.setText(_translate("mainWindow", "Analyze Pictures"))
-        self.sortPicsButton.setText(_translate("mainWindow", "Sort Pictures"))
         self.movePicsButton.setText(_translate("mainWindow", "Move Pictures"))
+        self.sortPicsButton.setText(_translate("mainWindow", "Sort Pictures"))
         self.menuFile.setTitle(_translate("mainWindow", "&File"))
         self.menuExit.setText(_translate("mainWindow", "&Exit"))
         self.action_Capture.setText(_translate("mainWindow", "&Capture"))

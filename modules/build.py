@@ -12,6 +12,9 @@ def buttons(self):
     self.analyzePicsButton.clicked.connect(self.analyze_pics_thread)
     self.sortPicsButton.clicked.connect(self.sort_pics_thread)
     
+    self.openInputFolderButton.clicked.connect(self.open_input_folder)
+    self.openOutputFolderButton.clicked.connect(self.open_output_folder)
+    
     self.selectInputFolderButton.clicked.connect(self.select_input_folder)
     self.selectOutputFolderButton.clicked.connect(self.select_output_folder)
 
@@ -25,6 +28,8 @@ def checkboxes(self):
     
 def line_edits(self):
     self.inputFolderEdit.textChanged.connect(self.sync_output_folder)
+    self.inputFolderEdit.textChanged.connect(self.toggle_folder_buttons)
+    self.outputFolderEdit.textChanged.connect(self.toggle_folder_buttons)
     
 def statusbar(self):
     self.left_status = QLabel()

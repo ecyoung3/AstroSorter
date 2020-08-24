@@ -232,27 +232,6 @@
 	background-color: rgb(25, 35, 45);
 }
 /*																QPushbutton																		*/	
-#mainLayout &gt; QPushButton {
-	font: 11pt &quot;Bahnschrift SemiBold&quot;;
-	background: none;
-	border: 2px solid rgba(80, 95, 105, 150);
- 	border-radius: 2px;
-	border: none;
-	padding: 5px;
-	border-radius: 3px;
-}
-#mainLayout &gt; #rectButton:hover:!disabled {
-	padding-bottom: 7px;
-	border: 1px solid rgb(0, 167, 209);
-}
-#directoryButton, #userButton, #sampleButton {
-	background: none;
-	border: none;
-}
-#directoryButton:hover:!disabled, #userButton:hover:!disabled, #sampleButton:hover:!disabled {
-	border: 1px solid rgb(0, 167, 209);
-	padding-bottom: 7px;
-} 
 QPushButton {
 	font: 11pt &quot;Bahnschrift SemiBold&quot;;
 	background-color: qlineargradient(x1: 0.5, y1: 1.0, 
@@ -271,10 +250,6 @@ QPushButton:hover:!disabled {
 	padding-bottom: 7px;
 	border: 1px solid rgb(0, 167, 209);
 }
-#mainLayout &gt; QPushButton:hover:!disabled {
-	border: 1px solid rgb(0, 167, 209);
-	padding: 5px 5px 7px 5px;
-}
 QPushButton::disabled {
 	color: rgb(68, 86, 100);
 	background-color: qlineargradient(x1: 0.5, y1: 1.0, 
@@ -282,46 +257,7 @@ QPushButton::disabled {
 		stop: 1.0 rgb(34, 43, 53), 
 		stop: 0.0 rgb(44, 55, 64));
 }
-#startstopwatchButton {
-	color: rgb(155, 229, 100);
-}
-#resetstopwatchButton::enabled {
-	color: rgb(228, 88, 101);
-}
-#starttimerButton::enabled {
-	color: rgb(155, 229, 100);
-}
-#starttimerButton::disabled:checked {
-	color: rgb(228, 88, 101);
-}
-#resettimerButton::enabled {
-	color: rgb(228, 88, 101);
-}
 /*																QLabel																					*/	
-#drawCanvas {
-	background-color: none;
-	border: none;
-}
-#gammaValue_Label, #blacklevelValue_Label, #gainValue_Label {
-	color: rgb(155, 229, 100);
-}
-#mainLayout &gt; #zoomvalueLabel {
-	padding-left: 0px;
-	color: rgb(155, 229, 100);
-}
-#mainLayout &gt; #zoomtextLabel {
-	padding-right: 0px;
-}
-#mainLayout &gt; QLabel {
-	padding-left: 8px;
-	padding-right: 8px;
-}
-#sampleLabel, #userLabel {
-	margin-right: 0px;
-	margin-left: -6px;
-	padding-right: 0px;
-	padding-left: 0px;
-}
 QLabel:disabled {
 	color: rgb(68, 86, 100);
 }
@@ -577,8 +513,9 @@ QLineEdit {
 		x2: 0.5, y2: 0.0,
 		stop: 1.0 rgba(68, 86, 100, 235), 
 		stop: 0.0 rgb(44, 55, 64));
-	padding: 4px 6px 4px 6px;
-	border: 1px solid rgb(0, 167, 209);
+	padding: 4px 4px 4px 4px;
+	border-radius: 3px;
+	border: 1px solid rgba(80, 95, 105, 255);
 	border-radius: 3px;
 }
 QLineEdit:hover {
@@ -942,6 +879,9 @@ QGroupBox::title {
           </property>
           <item row="1" column="2">
            <widget class="QLineEdit" name="outputFolderEdit">
+            <property name="styleSheet">
+             <string notr="true"/>
+            </property>
             <property name="frame">
              <bool>true</bool>
             </property>
@@ -966,12 +906,15 @@ QGroupBox::title {
              <string>Use input folder</string>
             </property>
             <property name="checked">
-             <bool>true</bool>
+             <bool>false</bool>
             </property>
            </widget>
           </item>
           <item row="0" column="2">
            <widget class="QLineEdit" name="inputFolderEdit">
+            <property name="styleSheet">
+             <string notr="true"/>
+            </property>
             <property name="frame">
              <bool>true</bool>
             </property>
@@ -984,6 +927,40 @@ QGroupBox::title {
            <widget class="QPushButton" name="selectInputFolderButton">
             <property name="text">
              <string>Select Input Folder</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="3">
+           <widget class="QPushButton" name="openInputFolderButton">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">padding: 6px;</string>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+            <property name="icon">
+             <iconset resource="../resources/resources.qrc">
+              <normaloff>:/icons/icons/open folder icon.png</normaloff>:/icons/icons/open folder icon.png</iconset>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="3">
+           <widget class="QPushButton" name="openOutputFolderButton">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">padding: 6px;</string>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+            <property name="icon">
+             <iconset resource="../resources/resources.qrc">
+              <normaloff>:/icons/icons/open folder icon.png</normaloff>:/icons/icons/open folder icon.png</iconset>
             </property>
            </widget>
           </item>
@@ -1008,33 +985,6 @@ QGroupBox::title {
           <property name="bottomMargin">
            <number>6</number>
           </property>
-          <item row="0" column="0">
-           <widget class="QPushButton" name="analyzePicsButton">
-            <property name="text">
-             <string>Analyze Pictures</string>
-            </property>
-           </widget>
-          </item>
-          <item row="0" column="1">
-           <widget class="QPushButton" name="sortPicsButton">
-            <property name="enabled">
-             <bool>false</bool>
-            </property>
-            <property name="text">
-             <string>Sort Pictures</string>
-            </property>
-           </widget>
-          </item>
-          <item row="0" column="2">
-           <widget class="QPushButton" name="movePicsButton">
-            <property name="enabled">
-             <bool>false</bool>
-            </property>
-            <property name="text">
-             <string>Move Pictures</string>
-            </property>
-           </widget>
-          </item>
           <item row="1" column="0" colspan="3">
            <widget class="QTableView" name="fileTable">
             <property name="styleSheet">
@@ -1070,6 +1020,33 @@ QGroupBox::title {
             <attribute name="verticalHeaderVisible">
              <bool>false</bool>
             </attribute>
+           </widget>
+          </item>
+          <item row="0" column="0">
+           <widget class="QPushButton" name="analyzePicsButton">
+            <property name="text">
+             <string>Analyze Pictures</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="2">
+           <widget class="QPushButton" name="movePicsButton">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
+            <property name="text">
+             <string>Move Pictures</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="QPushButton" name="sortPicsButton">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
+            <property name="text">
+             <string>Sort Pictures</string>
+            </property>
            </widget>
           </item>
          </layout>
