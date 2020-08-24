@@ -221,6 +221,10 @@
   <property name="windowTitle">
    <string>AstroSorter</string>
   </property>
+  <property name="windowIcon">
+   <iconset resource="../resources/resources.qrc">
+    <normaloff>:/icons/icons/moon.png</normaloff>:/icons/icons/moon.png</iconset>
+  </property>
   <property name="autoFillBackground">
    <bool>false</bool>
   </property>
