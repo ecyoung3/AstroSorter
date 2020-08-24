@@ -36,9 +36,7 @@ A PyQt5-based application to assist with sorting astrophotography images based o
 **Things that probably cannot be added:**
 * Automatically sorting panorama or mosaic photos
 
-*Credits:*
-
-*Window icon: Icongeek26 on flaticon.com*
+*Credits to Icongeek26 on flaticon.com for the window icon*
 
 
 
