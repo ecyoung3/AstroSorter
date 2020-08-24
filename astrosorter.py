@@ -3,12 +3,12 @@
 # =============================================================================
 # IMPORTS
 # =============================================================================
-
 import os
 import sys
 import ctypes
 import configparser
 
+# In case I decide to turn this into an executable in the future
 if getattr(sys, 'frozen', False):
     local_path = os.path.dirname(sys.executable)
 elif __file__:
@@ -17,6 +17,7 @@ os.chdir(os.path.join(local_path, ''))
 
 import exifread
 import numpy as np
+from fractions import Fraction
 import pandas as pd
 import pickle
 import time
@@ -91,7 +92,7 @@ class AstroSorter(QMainWindow, form_class):
     # =============================================================================
     # FINDING, LOADING, AND ANALYZING PHOTOS
     # =============================================================================
-    def is_pic(self, filepath) -> bool:
+    def is_pic(self, filepath: str) -> bool:
         return filepath.lower().endswith(self.pic_exts)
         
     def get_pics(self, location: str) -> list:
@@ -137,7 +138,7 @@ class AstroSorter(QMainWindow, form_class):
             except:
                 self.alert(f'Could not convert {field} using {func}')
         df['DateTime'] = df['DateTime'].apply(self.reformat_date)
-        df['FNumber'] = df['FNumber'].apply(self.convert_fraction)
+        df['FNumber'] = df['FNumber'].apply(self.to_fraction)
         
         # Remove duplicate entries in case the same files are analyzed multiple times
         df = df if self.pics_df is None else pd.concat([self.pics_df, df])
@@ -161,7 +162,8 @@ class AstroSorter(QMainWindow, form_class):
                 self.alert(f'{filepath} is not a valid picture file: skipping...')
             return metadata
         except Exception as ex:
-            self.alert(f'Unable to get image metadata\n\t(Error: {ex})')
+            self.alert(f'Unable to get image metadata from {filepath}')
+            print(ex)
             return metadata
         
     def load_image(self, filepath: str):
@@ -193,7 +195,7 @@ class AstroSorter(QMainWindow, form_class):
         os.remove('thumb.jpg')
         return array
         
-    def get_pct_dark(self, filepath: str, dark_thresh: int = 50, light_thresh = 150):
+    def get_pct_dark(self, filepath: str, threshold: int = 50) -> float:
         if filepath.lower().endswith('.cr2'):
             im = self.load_thumbnail(filepath)
         else:
@@ -202,14 +204,14 @@ class AstroSorter(QMainWindow, form_class):
             return self.alert(f'Could not load {filepath}')
         npix = im.shape[0]*im.shape[1]
         flat = self.condense_pixels(im)
-        num_dark = np.count_nonzero(flat < dark_thresh)
+        num_dark = np.count_nonzero(flat < threshold)
         pct_dark = num_dark / npix
         return pct_dark
         
     # =============================================================================
     # SORTING PHOTOS   
     # =============================================================================
-    def sort_pics(self, autodetect: bool = True, *args, **kwargs):
+    def sort_pics(self, autodetect: bool = True, *args, **kwargs) -> pd.DataFrame:
         t0 = time.time()
         num_pics = len(self.pics_df)
         self.notice(f'Sorting {num_pics} pictures...')
@@ -220,11 +222,11 @@ class AstroSorter(QMainWindow, form_class):
         settings = ['ExposureTime', 'ExposureTimeFloat', 'ISOSpeedRatings', 'FNumber']
         df = self.pics_df.copy()
         df = df[~df.index.duplicated()]
-        df['ExposureTimeFloat'] = df['ExposureTime'].apply(eval)
+        df['ExposureTimeFloat'] = df['ExposureTime'].apply(self.to_fraction)
         
         # Sort out bias frames (min. exposure time) and other frames (unique settings)
         conditions = df.groupby(settings).size().reset_index().rename(columns={0: 'Count'})
-        min_exp = df['ExposureTime'].apply(eval).min()
+        min_exp = df['ExposureTime'].apply(self.to_fraction).min()
         for i, group in conditions.iterrows():
             mask = ((df['ExposureTime'] == group['ExposureTime']) &
                     (df['ISOSpeedRatings'] == group['ISOSpeedRatings']) &
@@ -256,8 +258,8 @@ class AstroSorter(QMainWindow, form_class):
                 self.pics_df.loc[mask, 'ImageGroup'] = group_name
                 times = sorted(df.loc[mask, 'ExposureTimeFloat'].tolist())
                 t_min, t_max = float(times[0]), float(times[-1])
-                flat_mask = mask & (self.pics_df['ExposureTime'].apply(eval) == t_min)
-                other_mask = mask & (self.pics_df['ExposureTime'].apply(eval) == t_max)
+                flat_mask = mask & (self.pics_df['ExposureTime'].apply(self.to_fraction) == t_min)
+                other_mask = mask & (self.pics_df['ExposureTime'].apply(self.to_fraction) == t_max)
                 self.pics_df.loc[flat_mask, 'FrameType'] = 'Flat'
                 self.pics_df.loc[other_mask, 'FrameType'] = 'Dark or Light'
             else:
@@ -284,7 +286,7 @@ class AstroSorter(QMainWindow, form_class):
         
         return self.pics_df
     
-    def move_pics(self, copy: bool = False, *args, **kwargs):
+    def move_pics(self, copy: bool = False, *args, **kwargs) -> None:
         t0 = time.time()
         num_pics = len(self.pics_df)
         num_left = num_pics
@@ -296,7 +298,7 @@ class AstroSorter(QMainWindow, form_class):
         if not folder or not os.path.exists(folder):
             folder = self.default_output
             
-        # Each group of ISO shots with at least 2 shutter speeds is a group
+        # Each set of ISO shots with at least 2 shutter speeds is an image group
         for group in self.pics_df['ImageGroup'].unique():
             frames = self.pics_df[self.pics_df['ImageGroup'] == group]
             for frame in frames['FrameType'].unique():
@@ -387,23 +389,18 @@ class AstroSorter(QMainWindow, form_class):
         folder = str(QFileDialog.getExistingDirectory(self, window_title))
         return f'{folder}/' if folder else folder
     
-    def select_input_folder(self):
+    def select_input_folder(self) -> None:
         folder = self.select_folder('Select Input Folder')
-        if not folder:
-            return
-        self.inputFolderEdit.setText(folder)
+        self.inputFolderEdit.setText(folder) if folder else None
     
-    def select_output_folder(self):
+    def select_output_folder(self) -> None:
         folder = self.select_folder('Select Output Folder')
-        if not folder:
-            return
-        self.outputFolderEdit.setText(folder)
+        self.outputFolderEdit.setText(folder) if folder else None
         
-    def sync_output_folder(self, checked: bool):
-        if checked:
-            self.outputFolderEdit.setText(self.inputFolderEdit.text())
+    def sync_output_folder(self, checked: bool) -> None:
+        self.outputFolderEdit.setText(self.inputFolderEdit.text()) if checked else None
             
-    def toggle_folder_buttons(self):
+    def toggle_folder_buttons(self) -> None:
         # Leverage the fact that non-empty strings evaluate to True
         self.openInputFolderButton.setEnabled(bool(self.inputFolderEdit.text()))
         self.openOutputFolderButton.setEnabled(bool(self.outputFolderEdit.text()))
@@ -411,13 +408,14 @@ class AstroSorter(QMainWindow, form_class):
     def open_input_folder(self) -> None:
         folder = self.inputFolderEdit.text()
         if not os.path.exists(folder):
-            return self.alert(f'Folder does not exist')
+            return self.alert('Input folder does not exist')
         if not os.path.isdir(folder):
             return self.alert(f'{folder} is not a directory')
         try:
             os.startfile(folder)
         except Exception as ex:
-            return self.alert(f'Could not open folder: {ex}')
+            self.alert('Could not open input folder')
+            print(ex)
         
     def open_output_folder(self) -> None:
         folder = self.inputFolderEdit.text()
@@ -447,42 +445,36 @@ class AstroSorter(QMainWindow, form_class):
     # =============================================================================
     # HELPER FUNCTIONS
     # =============================================================================
-    def reset_info(self):
+    def reset_info(self) -> None:
         columns = [name.split(' ')[-1] for name in self.metadata_fields.keys()]
         self.pics_df = pd.DataFrame(columns = columns)
         
-    def reformat_date(self, date_string: str):
+    def reformat_date(self, date_string: str) -> str:
         time_obj = datetime.strptime(date_string, '%Y:%m:%d %H:%M:%S')
         return date.strftime(time_obj, '%m/%d/%Y %H:%M:%S')
     
-    def convert_fraction(self, fraction: str) -> float:
-        try:
-            return eval(fraction)
-        except:
-            return fraction
+    def to_fraction(self, fraction: str) -> float:
+        try: return float(Fraction(fraction))
+        except: return fraction
     
     def condense_pixels(self, frame: np.ndarray) -> np.ndarray:
-        if frame.ndim == 3:
-            flat = frame.sum(axis=2).ravel()
-        else:
-            flat = frame.ravel()
-        return flat
+        return frame.sum(axis=2).ravel() if frame.ndim == 3 else frame.ravel()
     
-    def analyze_pics_finished(self):
+    def analyze_pics_finished(self) -> None:
         self.sortPicsButton.setEnabled(len(self.pics_df) > 0)
         self.show_pic_info(self.pics_df)
         self.update_right_status('Finished analyzing pictures')
         self.analyzePicsButton.setEnabled(True)
         self.analyzePicsButton.setText('Analyze Pictures')
     
-    def sort_pics_finished(self):
+    def sort_pics_finished(self) -> None:
         self.move_pics_thread(copy = False)
         self.show_pic_info(self.pics_df)
         self.update_right_status('Finished sorting pictures')
         self.sortPicsButton.setEnabled(True)
         self.sortPicsButton.setText('Sort Pictures')
         
-    def move_pics_finished(self):
+    def move_pics_finished(self) -> None:
         self.show_pic_info(self.pics_df)
         self.update_right_status('Finished moving pictures')
         self.sortPicsButton.setEnabled(True)
@@ -498,20 +490,20 @@ class AstroSorter(QMainWindow, form_class):
     # =============================================================================
     # THREADS
     # =============================================================================
-    def analyze_pics_thread(self):
+    def analyze_pics_thread(self) -> None:
         location = self.inputFolderEdit.text()
         location = location if location else self.default_input
         worker = threading.Worker(self.analyze_pics, location=location)
         worker.signals.finished.connect(self.analyze_pics_finished)
         self.threadpool.start(worker)
         
-    def sort_pics_thread(self, autodetect: bool = True):
+    def sort_pics_thread(self, autodetect: bool = True) -> None:
         worker = threading.Worker(self.sort_pics, autodetect)
         worker.signals.finished.connect(self.sort_pics_finished)
         worker.signals.message.connect(self.update_left_status)
         self.threadpool.start(worker)
         
-    def move_pics_thread(self, copy: bool = False):
+    def move_pics_thread(self, copy: bool = False) -> None:
         worker = threading.Worker(self.move_pics, copy)
         worker.signals.finished.connect(self.move_pics_finished)
         worker.signals.message.connect(self.update_left_status)
