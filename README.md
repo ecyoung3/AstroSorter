@@ -22,7 +22,7 @@ A PyQt5-based application to assist with sorting astrophotography images based o
 2. Click "Analyze Pictures" to get a picture list with associated metadata for each file.
 3. Click "Sort Pictures" to automatically determine the frame type for each file and move them into corresponding folders in the destination folder.
     
-![Screenshot of program](/demo.png)
+![Screenshot of program](pictures/demo.png)
 
 **Planned features:** 
 * Selecting which calibration frames to look for (bias, flat, dark)
