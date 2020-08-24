@@ -28,8 +28,6 @@ A PyQt5-based application to assist with sorting astrophotography images based o
 * Selecting which calibration frames to look for (bias, flat, dark)
 * Manually designate frame types for files
 * Image previews
-* Button to open input/output folders or individual images
-* Sorting multiple capture series (currently just handles one)
 
 **Things I need help testing:**
 * Other picture formats besides .CR2
