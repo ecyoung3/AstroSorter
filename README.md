@@ -13,6 +13,7 @@ A PyQt5-based application to assist with sorting astrophotography images based o
 * RawPy
 * exifread
 * pickle
+* configparser
 
 **DISCLAIMER: I am not responsible for any lost photos or corrupted files (shouldn't happen, but you never know). Please test it with copies of your photos first.**
 
