@@ -209,7 +209,7 @@ class AstroSorter(QMainWindow, form_class):
         return pct_dark
         
     # =============================================================================
-    # SORTING PHOTOS   
+    # SORTING AND MOVING PHOTOS   
     # =============================================================================
     def sort_pics(self, autodetect: bool = True, *args, **kwargs) -> pd.DataFrame:
         t0 = time.time()
